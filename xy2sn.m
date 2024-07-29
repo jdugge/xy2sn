@@ -127,11 +127,15 @@ catch err
         error('MATLAB:xy2sn:distance2curveunpatched', ['There is a bug in the distance2curve function.\n'...
             'Please open the function file using "edit distance2curve.m"\n'...
             'and edit line 453 to read\n  if nargout == 3\ninstead of\n  if nargout > 3']);
+    else
+        rethrow(err)
     end
 end
 
 PX = P(:,1);
 PY = P(:,2);
+
+s = min(max(s,0),1);
 
 % Calculate tangential vectors on thalweg curve
 if splinesampling > 0
